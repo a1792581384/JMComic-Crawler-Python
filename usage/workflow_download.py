@@ -1,38 +1,39 @@
-from jmcomic.cl import JmcomicUI 
-
+from jmcomic import *
+from jmcomic.cl import JmcomicUI
 
 # 下方填入你要下载的本子的id，一行一个，每行的首尾可以有空白字符
-JM_albums='''
+jm_albums = '''
+
 
 
 '''
 
 # 单独下载章节
-JM_photos='''
+jm_photos = '''
 
 
 
 '''
 
 
-defDefenv(defDefenv(名称，默认值，修剪=('[]'，'""'，""")：env(名称，默认值，trim=('[]'，'""'，"""))：('[]'，'""'，""")：env(名称，默认值，trim=('[]'，'""'，"""))：
-导入操作系统导入操作系统
-value=os.getenv(名称，无)getenv(name，None)
-如果值为None或价值=="：如果value为None或价值="：
-返回默认值返回默认值
+def env(name, default, trim=('[]', '""', "''")):
+    import os
+    value = os.getenv(name, None)
+    if value is None or value == '':
+        return default
 
-对于成对修剪：对于成对修剪：
-如果value.startswith(对[0])和value.endswith(对[1])：if value.startswith(对[0])和value.endswith(对[1])：
-value=value[1：-1][1：-1]
+    for pair in trim:
+        if value.startswith(pair[0]) and value.endswith(pair[1]):
+            value = value[1:-1]
 
-返回值返回值
+    return value
 
 
-定义get_id_set(环境名称，给定)：get_id_set(环境名称，给定)：
-aid_set=set()set()
-对于[中的文本对于[中的文本
-鉴于，
-(环境(环境名称，")).替换('-'，'\n')，(环境(环境名称，")).替换('-'，'\n')，
+def get_id_set(env_name, given):
+    aid_set = set()
+    for text in [
+        given,
+        (env(env_name, '')).replace('-', '\n'),
     ]:
         aid_set.update(str_to_set(text))
 
