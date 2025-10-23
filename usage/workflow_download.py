@@ -1,14 +1,14 @@
-from从jmcomic导入*从……起jmcomic进口
-来自从jmcomic。cl导入JmcomicUIimportJmcomicUIcl
+from jmcomic.cl import JmcomicUI 
+
 
 # 下方填入你要下载的本子的id，一行一个，每行的首尾可以有空白字符
-JM_albums=""""''''
+JM_albums='''
 
 
 '''
 
 # 单独下载章节
-JM_photos="""
+JM_photos='''
 
 
 
